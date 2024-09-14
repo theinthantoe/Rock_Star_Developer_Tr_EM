@@ -4,6 +4,12 @@ import {deepPurple,grey} from "@mui/material/colors"
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Template from "./Template";
 import Home from "./pages/Home";
+import Login from "./pages/Login"
+import Register from "./pages/Register"
+import Profile  from "./pages/Profile";
+import Like from "./pages/Likes";
+import Comments from "./pages/Comments";
+
 
 
 const AppContext = createContext();
@@ -20,7 +26,17 @@ const router = createBrowserRouter([{
     element : <Template/>,
     children : [{
         path : "/",
-        element : <Home/>
+        element : <Home/>},
+        {path : "/login",
+        element : <Login/>},
+       { path : "/register",
+        element : <Register/>},
+       { path : "/comments/:id",
+        element : <Comments/>},
+        {path : "/profile/:id",
+        element : <Profile/>},
+        {path : "/likes/:id",
+        element : <Like/>
     }],
 }])
 
