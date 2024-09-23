@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import {useApp} from '../ThemeApp'
 import {Box } from "@mui/material"
@@ -7,8 +7,15 @@ import Item from '../components/Item'
 
 export default function Home  () {
   const {showForm,setGlobalMsg} =  useApp()
-  const [data ,setData]= useState([{id : 1 , context : "Hello react", name : "Alice"},
-  {id : 2, context : "React is Fun", name : "Bob"},{id : 3 , context : "React Developer", name : "Jhon"}])
+  const [data ,setData]= useState([]);
+  console.log(data)
+
+  useEffect(()=>{
+    const api = import.meta.env.VITE_API;
+    fetch(`${api}/content/posts`).then(async res=> {
+      setData(await res.json())
+    })
+  },[])
  
   const remove = (id)=>{
     setData(data.filter(item => item.id != id))
